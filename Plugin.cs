@@ -11,7 +11,7 @@ namespace SCP153
         public override string Name => "SCP153";
         public override string Prefix => "scp153";
         public override string Author => "Matysiak";
-        public override Version Version => new Version(1, 4, 5);
+        public override Version Version => new Version(1, 5, 0);
 
         public override void OnEnabled()
         {

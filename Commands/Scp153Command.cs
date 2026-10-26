@@ -1,6 +1,7 @@
 ﻿using CommandSystem;
 using Exiled.API.Features;
 using Exiled.CustomRoles.API.Features;
+using Exiled.Permissions.Extensions;
 using System;
 
 namespace SCP153.Commands
@@ -22,7 +23,7 @@ namespace SCP153.Commands
 
         protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            response = "Uzycie: .scp153 (give | remove) [id/nick]";
+            response = "Uzycie: scp153 (give | remove) [id/nick]";
             return false;
         }
 
@@ -34,6 +35,12 @@ namespace SCP153.Commands
 
             public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
             {
+                if (!sender.CheckPermission("scp153.manage"))
+                {
+                    response = "Brak uprawnien (wymagane: scp153.manage)!";
+                    return false;
+                }
+
                 if (arguments.Count < 1)
                 {
                     response = "Podaj nick lub ID gracza!";
@@ -67,6 +74,12 @@ namespace SCP153.Commands
 
             public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
             {
+                if (!sender.CheckPermission("scp153.manage"))
+                {
+                    response = "Brak uprawnien (wymagane: scp153.manage)!";
+                    return false;
+                }
+
                 if (arguments.Count < 1)
                 {
                     response = "Podaj nick lub ID gracza!";
@@ -82,6 +95,12 @@ namespace SCP153.Commands
 
                 if (CustomRole.TryGet(153, out CustomRole role))
                 {
+                    if (!role.Check(target))
+                    {
+                        response = $"Gracz {target.Nickname} nie posiada roli SCP153.";
+                        return false;
+                    }
+
                     role.RemoveRole(target);
                     response = $"Odebrano role SCP153 graczowi {target.Nickname}";
                     return true;

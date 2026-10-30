@@ -1,0 +1,36 @@
+name: Build and regression tests
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Regression tests (shared production balance rules)
+        run: dotnet run --project Tests/SCP153.Tests.csproj --configuration Release
+      - name: Compile plugin against checked-in server references
+        run: dotnet build BULISCP.csproj --configuration Release
+      - name: Package plugin assets (no server libraries)
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Path package
+          Copy-Item bin/Release/SCP153.dll package/
+          Copy-Item Audio package/ -Recurse
+          New-Item -ItemType Directory -Path package/Schematics/SCP153 -Force
+          Copy-Item Schematic/SCP153.json package/Schematics/SCP153/
+          Copy-Item docs, config package/ -Recurse
+          Copy-Item README.md, CHANGELOG.md package/
+          Get-ChildItem package -Recurse -File | Get-FileHash -Algorithm SHA256 |
+            ForEach-Object { "$($_.Hash.ToLower())  $($_.Path.Substring((Resolve-Path package).Path.Length + 1))" } |
+            Out-File package/SHA256SUMS.txt -Encoding utf8
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SCP153-2.2.0
+          path: package/

@@ -1,0 +1,52 @@
+{
+  "plugin": "SCP153",
+  "version": "2.2.0",
+  "base_commit": "cc71e193d1764b67327d605331f78d5003e3c05a",
+  "target": "net48-x64",
+  "compiler": "Roslyn 4.11.0",
+  "validation": {
+    "compile": "passed",
+    "logic_regression_cases": 34,
+    "reference_api_contracts": "checked",
+    "runtime_server_client": "not performed"
+  },
+  "hume_shield": {
+    "base": 400,
+    "per_bite": 50,
+    "limit": 2000
+  },
+  "sources": {
+    "Commands/Scp153Command.cs": "be52c2d18d363cac8547ce3f6a67e99bb868caec4b17c8d497b3c2554b91cdf8",
+    "Component/Scp153Component.cs": "a535e12ab204e3f5a8d38f4a2eb6593a203e4e38a559f1837e8b4a3e2cfa7327",
+    "Config.cs": "461e568ee164cce95e110d987e185f765c5e7f6f17faba86b8bc5bb52c4eb4c6",
+    "Logic/BalanceSettings.cs": "12838de882857336af3903e3cce0f000f1b8cc662dbc46255f3de0adaa875a0d",
+    "Logic/BiteProgress.cs": "d4f1571e54ba19b8be6397425189a257971ed44077fc870913fd5874d93542ff",
+    "Logic/LogicHandler.cs": "8a630cb987014ac817332e74f125846aba3bb51881b4e8b28e5c7333dfa27f77",
+    "Logic/TeleportService.cs": "6781011cca2d07c1f9c62480a6f9e4cc2f6a946d13ea627eb1930d832ef20623",
+    "Patches/ZombiePatches.cs": "1cdbf65a8d61536090f60a344e8f57953837b9301e1316733a54a4ae3ddc3e33",
+    "Plugin.cs": "4c3dee5b9008a9a2246c0555e2f4d43a63e1ed22926b535c61d65530adc6a21a",
+    "Properties/AssemblyInfo.cs": "9f308ab39f938d4a189a74fb9d0cb7fb797e3022b8c3a3f1dc53711892c0f469",
+    "Roles/Scp153.cs": "c2cf43c98dec70acc46789d10e6abafb6e190b51ed1a2fa3d58470f4a5520286"
+  },
+  "references": {
+    "0Harmony.dll": "0de0118c8f1d4408de389ca33b46d2ff7778f3a8541b430cae729ec913d899c7",
+    "Assembly-CSharp-firstpass.dll": "2530842b89d0fc57bde77006945b2b238e92e0efb870cdb340ad5b1a7d346c9e",
+    "Assembly-CSharp.dll": "2f45ef9cb59bfea0e450512aae368706c8a63c404670b6c3b97551b5149705e3",
+    "AudioPlayerApi.dll": "d034aa58d1f386c8d65f83ed3d57dc75995deb9c45347f64435bd311e5f5772e",
+    "CommandSystem.Core.dll": "4e60889b901dd985e54d4f03b87bcd84f912f39a48e0d9db7b817aee20c12863",
+    "Exiled.API.dll": "c2305737bdd9ea2ef2ee87e2206658095e582a2737ebc68464ea9ce45e1a6fc8",
+    "Exiled.CreditTags.dll": "c8c05fc9385fbc3b6af83e007deffc7f870c9570ace27b82f495742a495139ea",
+    "Exiled.CustomItems.dll": "e7d0a95f0f8b41be7d9e4f636ba6c46cfe0aee6f63210395ca2ab4595408a835",
+    "Exiled.CustomRoles.dll": "16be29e80f268e1e52a286034730cc2adc87280d40d067b5ce5f5cba5c9e20e6",
+    "Exiled.Events.dll": "c9dd7c3af66160a1f8d8e9fbbcb737cbdd22fe221d6f3ae8ead597978680a85d",
+    "Exiled.Permissions.dll": "5ef1378271d5defe3eba7d86e33706f47eae689d528a22d9540fa05c48e38902",
+    "LabApi.dll": "b8cf1aeb8ed42316772d4f44199da1c59947fcbf6d258a759df492e971e0b8f4",
+    "Mirror.dll": "553de85f41ae3e8ada828283c93ddbfa2e3ca019c00daf886cc411e25e19fc02",
+    "Pooling.dll": "018ac2b5a25ca2b0db71902a2aa115fd8993be66709118db92a80a168ccf5c03",
+    "ProjectMER.dll": "12e3a35eaba9fe9371fda3c0276a7c674b5a86614c9da38e274320206c5d5ee2",
+    "System.ComponentModel.DataAnnotations.dll": "4b2b8f7b2eebff970ef247ec94d271d6664514dee62a0a97f03b03dbe589f357",
+    "UnityEngine.CoreModule.dll": "4daefe9737c4bc32350957490bb47eb13dddf3b47b7fae8dfd0fded9ddf24832",
+    "UnityEngine.PhysicsModule.dll": "f8bae548725130689ae8c9efe95c62e17e8e162d88fe4e2194959bec2662bbd3",
+    "UnityEngine.dll": "2b50add050fd9287ed6cea220e4d4068f865a9fca04fc6c4bdbd54f97ec09304"
+  }
+}

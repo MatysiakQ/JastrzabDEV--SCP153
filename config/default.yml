@@ -1,0 +1,30 @@
+# Merge this section into your EXILED server config.
+scp153:
+  is_enabled: true
+  debug: false
+  schematic_name: SCP153
+  custom_role_id: 153
+  spawn_chance: 0.1
+  max_health: 4500
+  base_hume_shield: 400
+  max_hume_shield_limit: 2000
+  hume_shield_per_hit: 50
+  hume_shield_regen_rate: 15
+  hume_shield_regen_delay: 5
+  slowness_intensity: 20
+  damage: 50
+  eat_cooldown: 3
+  evolution_one_hits: 3
+  evolution_two_hits: 5
+  evolution_three_hits: 7
+  evolution_four_hits: 10
+  evolved_damage_multiplier: 1.5
+  first_evolution_slowness_multiplier: 0.5
+  third_evolution_movement_boost: 10
+  final_evolution_movement_boost: 20
+  cooldown_reduction: 1
+  final_heal_per_hit: 250
+  final_regen_multiplier: 2
+  blackout_duration: 15
+  enable_pocket_dimension: true
+  removal_kills_player: true

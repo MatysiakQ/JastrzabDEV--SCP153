@@ -27,10 +27,14 @@ jobs:
           New-Item -ItemType Directory -Path package/Schematics/SCP153 -Force
           Copy-Item Schematic/SCP153.json package/Schematics/SCP153/
           Copy-Item docs, config package/ -Recurse
-          Copy-Item README.md, CHANGELOG.md package/
-          Get-ChildItem package -Recurse -File | Get-FileHash -Algorithm SHA256 |
-            ForEach-Object { "$($_.Hash.ToLower())  $($_.Path.Substring((Resolve-Path package).Path.Length + 1))" } |
-            Out-File package/SHA256SUMS.txt -Encoding utf8
+          Copy-Item README.md, CHANGELOG.md, LICENSE.txt package/
+          $packageRoot = (Resolve-Path package).Path
+          $checksums = @(Get-ChildItem package -Recurse -File -Exclude SHA256SUMS.txt |
+            Get-FileHash -Algorithm SHA256 | ForEach-Object {
+              $relativePath = $_.Path.Substring($packageRoot.Length + 1).Replace('\', '/')
+              "$($_.Hash.ToLower())  $relativePath"
+            })
+          $checksums | Out-File package/SHA256SUMS.txt -Encoding utf8
       - uses: actions/upload-artifact@v4
         with:
           name: SCP153-2.2.0

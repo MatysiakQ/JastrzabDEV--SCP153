@@ -11,7 +11,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Plugin.cs;Config.cs;Commands/**/*.cs;Component/**/*.cs;Logic/**/*.cs;Patches/**/*.cs;Properties/**/*.cs" />
+    <Compile Include="Plugin.cs;Config.cs;Commands/**/*.cs;Component/**/*.cs;Logic/**/*.cs;Patches/**/*.cs;Properties/**/*.cs;Roles/**/*.cs" />
     <Reference Include="0Harmony"><HintPath>REFERENCES/0Harmony.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="Assembly-CSharp-firstpass"><HintPath>REFERENCES/Assembly-CSharp-firstpass.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="Assembly-CSharp"><HintPath>REFERENCES/Assembly-CSharp.dll</HintPath><Private>false</Private></Reference>

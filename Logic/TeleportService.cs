@@ -20,26 +20,31 @@ namespace SCP153.Logic
             new Vector3(2.5f, 0f, 0f), new Vector3(-2.5f, 0f, 0f),
             new Vector3(0f, 0f, 2.5f), new Vector3(0f, 0f, -2.5f)
         };
+        private const float MinimumTeleportDistance = 8f;
 
         public static bool TryRelocate(Player target, bool heavyOnly = false)
         {
             // After detonation keep combat on the surface; never send victims underground.
             if (target == null || !target.IsAlive || target.Health <= 0f || Warhead.IsDetonated) return false;
+            Vector3 origin = target.Position;
             var rooms = Room.List.Where(r => Corridors.Contains(r.Type) &&
                 (r.Zone == ZoneType.HeavyContainment ||
                  (!heavyOnly && !Map.IsLczDecontaminated && r.Zone == ZoneType.LightContainment)))
-                .OrderBy(_ => Random.value);
+                .OrderBy(_ => Random.value)
+                .ToList();
             foreach (var room in rooms)
             {
                 if (room.Doors.Any() && room.Doors.All(d => d.IsLocked)) continue;
-                foreach (var local in Samples)
+                foreach (var local in Samples.OrderBy(_ => Random.value))
                 {
                     if (!TryFindPosition(room, local, out var destination)) continue;
+                    if (Vector3.Distance(origin, destination) < MinimumTeleportDistance) continue;
                     target.Teleport(destination);
-                    return Vector3.Distance(target.Position, destination) < 2f;
+                    if (Vector3.Distance(target.Position, destination) < 2f &&
+                        Vector3.Distance(origin, target.Position) >= MinimumTeleportDistance)
+                        return true;
                 }
             }
-            // No unvalidated room.Position fallback.
             return false;
         }
 

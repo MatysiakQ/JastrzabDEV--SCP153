@@ -65,7 +65,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          grep -q 'public override Version Version => new Version(2, 2, 0);' Plugin.cs
+          grep -q 'public override Version Version => new Version(2, 2, 1);' Plugin.cs
           if git show-ref --verify --quiet "refs/tags/$RELEASE_TAG"; then
             test "$(git rev-parse "$RELEASE_TAG^{commit}")" = "$GITHUB_SHA" || {
               echo "Existing tag points to another commit; refusing to move it."

@@ -1,12 +1,12 @@
-![EXILED](https://img.shields.io/badge/EXILED-9.12.6%2B-blue)
-![Version](https://img.shields.io/badge/Version-2.2.0-blue)
+![EXILED](https://img.shields.io/badge/EXILED-9.15.3%2B-blue)
+![Version](https://img.shields.io/badge/Version-2.2.1-blue)
 ![Author](https://img.shields.io/badge/Author-Matysiak-green)
 
 # SCP-153 | BULSON
 
 Grywalna CustomRole oparta na SCP-049-2: ugryzienia, ewolucja, regenerujacy sie HumeShield, model ProjectMER i dzwiek HAPS.ogg.
 
-## Wersja 2.2.0
+## Wersja 2.2.1
 
 - **400 bazowego HS**, **+50 do maksymalnego i aktualnego HS za skuteczne ugryzienie**, limit **2000 HS**.
 - Nagrody sa przyznawane po faktycznie przyjetych obrazeniach. Anulowana proba ataku nie daje ewolucji, HS ani leczenia.
@@ -20,7 +20,7 @@ Grywalna CustomRole oparta na SCP-049-2: ugryzienia, ewolucja, regenerujacy sie 
 
 - Serwer 64-bitowy, EXILED z wlaczonym CustomRoles i Permissions.
 - ProjectMER oraz AudioPlayerApi wraz z ich zaleznosciami.
-- Projekt kompilowany przeciw referencjom EXILED **9.12.6**, gry **14.2.5** i LabAPI **1.1.4** dolaczonym w REFERENCES.
+- Projekt kompilowany przeciw referencjom EXILED **9.15.3**, gry **14.2.5** i LabAPI **1.1.4** dolaczonym w REFERENCES.
 - Nowsze wersje serwera wymagaja sprawdzenia zgodnosci. Nie deklarujemy obslugi wszystkich wersji 13.x+ ani dowolnego EXILED Latest.
 - Biblioteka Pooling.dll jest referencja kompilacyjna gry. Nie kopiuj folderu REFERENCES na serwer.
 - Testy logiki oraz kompilacja nie zastepuja testu klienta: [plan testow](docs/TESTING.md), [powiazanie z audytem](docs/AUDIT_FIXES.md).
@@ -67,7 +67,7 @@ Po osiagnieciu limitu ugryzienia nadal uzupelniaja aktualny HS o 50, maksymalnie
 
 **Zdolnosci bazowe:** Bloodlust i zjadanie zwlok Zombie pozostaja aktywne. Schemat jest wizualna dekoracja; hitboxy i animacje nadal naleza do bazowego SCP-049-2.
 
-**Teleport:** uzywa zwyklych korytarzy LCZ/HCZ i nie wybiera LCZ po dekontaminacji. Przy braku bezpiecznego punktu nie teleportuje. Po detonacji warhead nadal dzialaja obrazenia i progresja, ale nie przemieszczenie ofiary. Wejscie do Pocket Dimension oraz upuszczenie przedmiotu moga byc zablokowane przez inne systemy serwera.
+**Teleport:** losuje zwykle korytarze LCZ/HCZ i nie wybiera LCZ po dekontaminacji. Punkt musi byc oddalony co najmniej 12 jednostek od ofiary i atakujacego Bulsona. Przy braku bezpiecznego punktu nie teleportuje. Po detonacji warhead nadal dzialaja obrazenia i progresja, ale nie przemieszczenie ofiary. Wejscie do Pocket Dimension oraz upuszczenie przedmiotu moga byc zablokowane przez inne systemy serwera.
 
 ## Komendy
 
@@ -93,10 +93,10 @@ Wynik: bin/Release/SCP153.dll. CI wykonuje testy i kompilacje na Windows oraz ud
 
 ## English
 
-SCP-153 is an EXILED CustomRole based on SCP-049-2. Version 2.2.0 starts with **400 HumeShield**, gains **50 maximum/current HS per confirmed bite**, and caps maximum HS at **2000** (32 bites; final evolution at 10 bites has 900 HS). Existing YAML values are preserved by EXILED: update base_hume_shield, hume_shield_per_hit and max_hume_shield_limit when upgrading.
+SCP-153 is an EXILED CustomRole based on SCP-049-2. Version 2.2.1 starts with **400 HumeShield**, gains **50 maximum/current HS per confirmed bite**, and caps maximum HS at **2000** (32 bites; final evolution at 10 bites has 900 HS). Existing YAML values are preserved by EXILED: update base_hume_shield, hume_shield_per_hit and max_hume_shield_limit when upgrading.
 
 Rewards commit only after actual damage, once per native swing. Each role assignment owns fresh state; shutdown unregisters only this plugin's role. Missing/failed schematics leave a visible Zombie fallback. Teleports validate ground and capsule clearance, skip unavailable destinations, and stop after warhead detonation. Spectator visibility is reconciled with current state and Mirror observers.
 
-Build references are EXILED 9.12.6 / SCP:SL 14.2.5. Runtime compatibility with newer versions requires server validation. Native Zombie Bloodlust/corpse consumption and hitboxes remain. Server cooldown is patched for this role only; the unmodified client's predicted animations still use its own timer. See docs/TESTING.md for mandatory in-game checks.
+Build references are EXILED 9.15.3 / SCP:SL 14.2.5. Native Zombie Bloodlust/corpse consumption and hitboxes remain. Server cooldown is patched for this role only; the unmodified client's predicted animations still use its own timer. See docs/TESTING.md for mandatory in-game checks.
 
 Install SCP153.dll into EXILED/Plugins, the SCP153 schematic folder into ProjectMER/Schematics, and HAPS.ogg into EXILED/Configs/Plugins/scp153/Audio. Administrative commands require scp153.manage; remove defaults to moving the player to Spectator.

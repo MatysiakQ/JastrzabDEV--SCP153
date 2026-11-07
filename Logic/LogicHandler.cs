@@ -172,7 +172,7 @@ namespace SCP153.Logic
                     ev.Player.ShowHint("<color=red>SCP-153 wciagnal cie do Wymiaru Lzowego!</color>", 6f);
                 }
             }
-            else if (TeleportService.TryRelocate(ev.Player))
+            else if (TeleportService.TryRelocate(ev.Player, pending.Component.Player))
                 ev.Player.ShowHint("<color=red>SCP-153 przeniosl cie do innego korytarza.</color>", 4f);
         }
 

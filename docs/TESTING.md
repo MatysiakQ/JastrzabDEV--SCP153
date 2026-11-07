@@ -1,4 +1,4 @@
-# Weryfikacja 2.2.0
+# Weryfikacja 2.2.1
 
 ## Automatyczne sprawdzenie
 
@@ -6,7 +6,7 @@ Tests/SCP153.Tests.csproj uruchamia 34 przypadki na tych samych klasach BalanceS
 
 To testy logiki. Nie symuluja Unity, EXILED, Harmony, Mirror ani samej fizyki.
 
-Build pluginu sprawdza zgodnosc kompilacyjna z DLL w REFERENCES. W referencjach gry brakuje w oryginalnym repo Pooling.dll, wymaganego przez typ ZombieRole; dodana referencja pochodzi z archiwum wskazanego przez oficjalny workflow EXILED: https://exmod-team.github.io/SL-References/Dev.zip.
+Build pluginu sprawdza zgodnosc kompilacyjna z DLL w REFERENCES, zaktualizowanymi do EXILED 9.15.3. W referencjach gry brakuje w oryginalnym repo Pooling.dll, wymaganego przez typ ZombieRole; dodana referencja pochodzi z archiwum wskazanego przez oficjalny workflow EXILED: https://exmod-team.github.io/SL-References/Dev.zip.
 SHA-256 dodanego Pooling.dll: 018ac2b5a25ca2b0db71902a2aa115fd8993be66709118db92a80a168ccf5c03.
 Jest to zaleznosc kompilacyjna, nie plik do instalowania obok pluginu.
 
@@ -22,7 +22,7 @@ Jest to zaleznosc kompilacyjna, nie plik do instalowania obok pluginu.
 8. Sprawdz podstawowe i koncowe HS: 15/30 na sekunde, po 5 s bez przyjetych obrazen, do wypracowanego maksimum. Aktywuj zdolnosc 049 i blokady HS/SCP-244.
 9. Szybko przelaczaj obserwacje A/B, odrodz obserwatora, dolacz w trakcie rundy i przeladuj schemat. Zywy przeciwnik musi widziec model.
 10. Usun schemat lub ustaw zla nazwe: powinien byc widoczny zwykly Zombie. Usun audio: rola nadal dziala.
-11. Sprawdz wszystkie warianty korytarzy, blokady drzwi i przeszkody. Gdy brakuje miejsca, gracz pozostaje na miejscu. Po dekontaminacji nie trafia do LCZ; po warhead nie jest przenoszony pod ziemie ani do Pocket Dimension.
+11. Sprawdz wszystkie warianty korytarzy, blokady drzwi i przeszkody. Punkt docelowy musi byc co najmniej 12 jednostek od ofiary i Bulsona; teleport obok atakujacego jest niedopuszczalny. Gdy brakuje miejsca, gracz pozostaje na miejscu. Po dekontaminacji nie trafia do LCZ; po warhead nie jest przenoszony pod ziemie ani do Pocket Dimension.
 12. Sprawdz wejscie do Pocket Dimension i upuszczanie przedmiotu przy aktywnych pluginach blokujacych te operacje.
 13. Testuj klikniecia i przytrzymanie ataku przed/po 7 stosach. Serwerowy cooldown jest zmieniony, ale klient przewiduje animacje wedlug wlasnego timera 1.3 s; zdalne animacje i UI nie sa dowodem czasu przyjetych trafien.
 14. Wykonaj kilka rund dla 6, 8, 12 i 14 osob, zapisujac czas do 10 stosow i przezywalnosc. Nie traktuj samych testow jednostkowych jako potwierdzenia balansu.

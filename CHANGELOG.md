@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.1 — 2026-11-07
+
+- Require and compile against EXILED 9.15.3.
+- Reject teleport destinations closer than 12 units to both the victim and the attacking Bulson.
+- Publish a rebuilt DLL containing the teleport fix.
+
 ## 2.2.0 — 2026-10-30
 
 - HS: 400 base, +50 maximum/current per confirmed bite, 2000 cap; regeneration restores the earned maximum.

@@ -1,4 +1,4 @@
-# Powiazanie z audytem 30.10.2026
+# Powiazanie z audytem 30.10.2026 i poprawka 2.2.1
 
 | ID | Zmiana |
 | --- | --- |
@@ -20,6 +20,6 @@
 | A16 | Mnozniki i konfigurowalne progi; ewolucje nie pogarszaja parametrow bazowych |
 | A17 | Jeden cooldown serwerowy w natywnej umiejetnosci. Lokalnej predykcji animacji klienta nie mozna zmienic sama DLL serwerowa; wymaga testu w grze |
 | A18 | Jawne sprzatanie wlasnych efektow i pol; bez wymuszania skali i stanow domyslnych przez bazowy RemoveRole |
-| A19 | Wersja 2.2.0 w pluginie i assembly, dokladne referencje, SDK build i CI |
+| A19 | Wersja 2.2.1 w pluginie i assembly, dokladne referencje, SDK build i CI |
 
-A12 nie stanowi gwarancji dla kazdej modyfikacji mapy; fizyka i dostepnosc wyjsc wymagaja testu. A10 wymaga sprawdzenia na klientach i przy uzywanym interest management. Zweryfikowano kompilacje i logike balansowania; nie oglaszamy pluginu przetestowanym na docelowym serwerze.
+A12 nie stanowi gwarancji dla kazdej modyfikacji mapy; fizyka i dostepnosc wyjsc wymagaja testu. Od 2.2.1 punkt teleportu musi byc oddalony co najmniej 12 jednostek od ofiary i atakujacego SCP-153. A10 wymaga sprawdzenia na klientach i przy uzywanym interest management. Zweryfikowano kompilacje i logike balansowania; nie oglaszamy pluginu przetestowanym na docelowym serwerze.

@@ -17,8 +17,8 @@ namespace SCP153
         public override string Name => "SCP153";
         public override string Prefix => "scp153";
         public override string Author => "Matysiak";
-        public override Version Version => new Version(2, 2, 0);
-        public override Version RequiredExiledVersion => new Version(9, 12, 6);
+        public override Version Version => new Version(2, 2, 1);
+        public override Version RequiredExiledVersion => new Version(9, 15, 3);
 
         public override void OnEnabled()
         {
@@ -40,12 +40,12 @@ namespace SCP153
                 Role.Register();
                 if (!CustomRole.Registered.Contains(Role))
                     throw new InvalidOperationException("CustomRoles nie zarejestrowalo SCP-153 (sprawdz modul i config).");
-                harmony = new Harmony("Matysiak.SCP153.2.2.0");
+                harmony = new Harmony("Matysiak.SCP153.2.2.1");
                 harmony.PatchAll();
                 LogicHandler.RegisterEvents();
                 IsRunning = true;
                 base.OnEnabled();
-                Log.Info("[SCP-153] Wersja 2.2.0 uruchomiona.");
+                Log.Info("[SCP-153] Wersja 2.2.1 uruchomiona.");
             }
             catch (Exception ex)
             {

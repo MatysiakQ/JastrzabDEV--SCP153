@@ -20,13 +20,17 @@ namespace SCP153.Logic
             new Vector3(2.5f, 0f, 0f), new Vector3(-2.5f, 0f, 0f),
             new Vector3(0f, 0f, 2.5f), new Vector3(0f, 0f, -2.5f)
         };
-        private const float MinimumTeleportDistance = 8f;
+        private const float MinimumTeleportDistance = 12f;
 
-        public static bool TryRelocate(Player target, bool heavyOnly = false)
+        public static bool TryRelocate(Player target, bool heavyOnly = false) =>
+            TryRelocate(target, null, heavyOnly);
+
+        public static bool TryRelocate(Player target, Player avoid, bool heavyOnly = false)
         {
             // After detonation keep combat on the surface; never send victims underground.
             if (target == null || !target.IsAlive || target.Health <= 0f || Warhead.IsDetonated) return false;
             Vector3 origin = target.Position;
+            bool avoidIsValid = avoid != null && avoid != target && avoid.IsAlive;
             var rooms = Room.List.Where(r => Corridors.Contains(r.Type) &&
                 (r.Zone == ZoneType.HeavyContainment ||
                  (!heavyOnly && !Map.IsLczDecontaminated && r.Zone == ZoneType.LightContainment)))
@@ -39,9 +43,11 @@ namespace SCP153.Logic
                 {
                     if (!TryFindPosition(room, local, out var destination)) continue;
                     if (Vector3.Distance(origin, destination) < MinimumTeleportDistance) continue;
+                    if (avoidIsValid && Vector3.Distance(avoid.Position, destination) < MinimumTeleportDistance) continue;
                     target.Teleport(destination);
                     if (Vector3.Distance(target.Position, destination) < 2f &&
-                        Vector3.Distance(origin, target.Position) >= MinimumTeleportDistance)
+                        Vector3.Distance(origin, target.Position) >= MinimumTeleportDistance &&
+                        (!avoidIsValid || Vector3.Distance(avoid.Position, target.Position) >= MinimumTeleportDistance))
                         return true;
                 }
             }

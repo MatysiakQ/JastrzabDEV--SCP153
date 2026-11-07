@@ -32,7 +32,7 @@ def prepare(package, output, commit):
 
     info = {
         "plugin": "SCP153",
-        "version": "2.2.0",
+        "version": "2.2.1",
         "commit": commit,
         "target": "net48-x64",
         "validation": {
@@ -40,7 +40,7 @@ def prepare(package, output, commit):
             "logic_regression_cases": 34,
             "runtime_server_client": "not performed",
         },
-        "build_references": {"exiled": "9.12.6", "scp_sl": "14.2.5"},
+        "build_references": {"exiled": "9.15.3", "scp_sl": "14.2.5"},
         "hume_shield": {"base": 400, "per_bite": 50, "limit": 2000},
     }
     (package / "BUILDINFO.json").write_text(json.dumps(info, indent=2) + "\n", encoding="utf-8")
@@ -50,7 +50,7 @@ def prepare(package, output, commit):
 
     output.mkdir(parents=True, exist_ok=True)
     shutil.copy2(package / "SCP153.dll", output / "SCP153.dll")
-    archive = output / "SCP153-2.2.0.zip"
+    archive = output / "SCP153-2.2.1.zip"
     with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as handle:
         for path in sorted(package.rglob("*")):
             if path.is_file():

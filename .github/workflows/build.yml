@@ -37,27 +37,27 @@ jobs:
           $checksums | Out-File package/SHA256SUMS.txt -Encoding utf8
       - uses: actions/upload-artifact@v4
         with:
-          name: SCP153-2.2.0
+          name: SCP153-2.2.1
           path: package/
 
   release:
-    name: Publish v2.2.0
+    name: Publish v2.2.1
     needs: build
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master' && contains(github.event.head_commit.message, '[release v2.2.0]')
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master' && contains(github.event.head_commit.message, '[release v2.2.1]')
     runs-on: ubuntu-latest
     permissions:
       contents: write
     env:
       GH_TOKEN: ${{ github.token }}
       GH_REPO: ${{ github.repository }}
-      RELEASE_TAG: v2.2.0
+      RELEASE_TAG: v2.2.1
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - uses: actions/download-artifact@v4
         with:
-          name: SCP153-2.2.0
+          name: SCP153-2.2.1
           path: release-package/
       - name: Verify package and prepare release attachments
         run: python3 build/package_release.py --package release-package --output release-assets --commit "$GITHUB_SHA"
@@ -74,23 +74,23 @@ jobs:
           else
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git tag --annotate "$RELEASE_TAG" "$GITHUB_SHA" --message "SCP-153 BULSON v2.2.0"
+            git tag --annotate "$RELEASE_TAG" "$GITHUB_SHA" --message "SCP-153 BULSON v2.2.1"
             git push origin "refs/tags/$RELEASE_TAG"
           fi
       - name: Publish release with Polish and English notes
         shell: bash
         run: |
           set -euo pipefail
-          notes="docs/RELEASE_v2.2.0.md"
+          notes="docs/RELEASE_v2.2.1.md"
           if gh release view "$RELEASE_TAG" --json isDraft >/dev/null 2>&1; then
             is_draft="$(gh release view "$RELEASE_TAG" --json isDraft --jq '.isDraft')"
             if [ "$is_draft" != "true" ]; then
               echo "Release is already published for the verified tag."
               exit 0
             fi
-            gh release edit "$RELEASE_TAG" --title "SCP-153 BULSON v2.2.0 — poprawki audytu / audit fixes" --notes-file "$notes"
-            gh release upload "$RELEASE_TAG" release-assets/SCP153.dll release-assets/SCP153-2.2.0.zip release-assets/SHA256SUMS.txt --clobber
+            gh release edit "$RELEASE_TAG" --title "SCP-153 BULSON v2.2.1 — teleport fix / EXILED 9.15.3" --notes-file "$notes"
+            gh release upload "$RELEASE_TAG" release-assets/SCP153.dll release-assets/SCP153-2.2.1.zip release-assets/SHA256SUMS.txt --clobber
           else
-            gh release create "$RELEASE_TAG" --verify-tag --draft --title "SCP-153 BULSON v2.2.0 — poprawki audytu / audit fixes" --notes-file "$notes" release-assets/SCP153.dll release-assets/SCP153-2.2.0.zip release-assets/SHA256SUMS.txt
+            gh release create "$RELEASE_TAG" --verify-tag --draft --title "SCP-153 BULSON v2.2.1 — teleport fix / EXILED 9.15.3" --notes-file "$notes" release-assets/SCP153.dll release-assets/SCP153-2.2.1.zip release-assets/SHA256SUMS.txt
           fi
           gh release edit "$RELEASE_TAG" --draft=false --latest
